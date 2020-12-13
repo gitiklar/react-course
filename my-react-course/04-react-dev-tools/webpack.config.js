@@ -1,19 +1,3 @@
-For react project need:
-
-1.) Install Node.JS
-
-At the general folder of all projects or at the specific project do this to install react and webpack:</br>
-2.) npm init -y</br>
-3.) npm install --save-dev react react-dom webpack webpack-cli@3.3.12 babel-cli @babel/core @babel/preset-react html-webpack-plugin clean-webpack-plugin webpack-dev-server babel-loader mini-css-extract-plugin css-loader
-
-4.) For such a project structure:</br>
-<pre>
-css/main.css
-html/index.html
-src/main.js
-</pre>
-Create webpack.config.js file at the specific project and copy that:
-<pre>
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -64,6 +48,3 @@ module.exports = {
     new CleanWebpackPlugin(),
   ]
 };
-</pre>
-
-6.) npx webpack-dev-server -d for development environment or npx webpack -p for production environment
