@@ -6,11 +6,12 @@ import '../css/main.css';
 
 const App = () => {
   return (
-    <div>
+    <>
+      <h1>Hello</h1>
       <Person name="jeff" />
       <Person name="bob" />
-      <Person name="dana" />    
-      </div>
+      <Person name="dana" />
+    </>
   )
 };
 
