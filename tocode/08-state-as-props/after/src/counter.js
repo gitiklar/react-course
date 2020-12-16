@@ -11,7 +11,6 @@ export default function Counter(props) {
 
   return (
     <div>
-
       <p>
         I was clicked {count} times        
         <button onClick={inc}>Click Me</button>
