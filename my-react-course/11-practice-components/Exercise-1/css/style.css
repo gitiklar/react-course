@@ -1,0 +1,27 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  height: 100vh; }
+  main h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    font-size: 5rem;
+    color: white; }
+  main div.inputsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: tomato;
+    height: 70vh;
+    width: 100vw; }
+    main div.inputsContainer label {
+      display: block; }
+      main div.inputsContainer label input {
+        width: 50vw; }
+
+/*# sourceMappingURL=style.css.map */

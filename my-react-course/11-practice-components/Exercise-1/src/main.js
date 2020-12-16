@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MultiInput from './multiInput.js';
-import '../scss/style.scss';
+import '../css/style.css';
 
 function Header() {
     return(
