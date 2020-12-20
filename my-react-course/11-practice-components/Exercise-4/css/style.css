@@ -1,0 +1,29 @@
+main {
+  height: 100vh;
+  display: grid;
+  grid-template-areas: " h1   h1 " "color div";
+  background-color: black;
+  color: white; }
+  main h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: h1;
+    height: 25vh;
+    font-size: 3rem;
+    margin: 0; }
+  main div.react-colorful {
+    grid-area: color;
+    width: 50vw;
+    height: 75vh; }
+    main div.react-colorful .react-colorful__hue {
+      height: 20%;
+      border-radius: 0 0 3px 3px; }
+  main div.colourfulDiv {
+    grid-area: div;
+    width: 50vw;
+    height: 75vh;
+    border: 1px solid white;
+    border-radius: 8px 8px 0 0; }
+
+/*# sourceMappingURL=style.css.map */

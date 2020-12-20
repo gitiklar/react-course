@@ -1,0 +1,29 @@
+main {
+  background-color: purple;
+  height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; }
+  main h1 {
+    height: 30vh;
+    font-size: 5rem; }
+  main label {
+    position: relative;
+    color: black;
+    font-size: 2rem; }
+    main label span {
+      position: absolute;
+      text-align: center;
+      background-color: #c2c2c2;
+      width: 100%; }
+    main label input {
+      width: 80vw;
+      height: 100px;
+      padding-top: 50px;
+      padding-left: 45%; }
+      main label input::-webkit-inner-spin-button {
+        -webkit-appearance: none; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,50 @@
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+
+    h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30vh;
+        width: 100vw;
+        background-color: black;
+        color: white;
+        font-size: 5rem;
+    }
+
+    div.convertTimeUnitsContainer {
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-around;
+        font-size: 2rem;
+
+        label {
+            position: relative;
+            
+            span {
+                position: absolute;
+            }
+
+            input {
+                width: 50vw;
+                height: 100px;
+                padding-top: 35px;
+                
+                &::-webkit-inner-spin-button , &::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                }
+            }
+        }
+
+    }
+
+    
+}

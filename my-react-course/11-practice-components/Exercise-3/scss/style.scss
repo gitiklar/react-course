@@ -1,0 +1,40 @@
+$font-size-basic :5rem;
+
+main {
+    background-color: purple;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    h1 {
+        height: 30vh;
+        font-size: $font-size-basic;
+    }
+
+    label {
+        position: relative;
+        color: black;
+        font-size: $font-size-basic/2.5;
+
+        span {
+            position: absolute;
+            text-align: center;
+            background-color: rgb(194, 194, 194);
+            width: 100%;
+        }
+
+        input {
+            width: 80vw;
+            height: 100px;
+            padding-top: 50px;
+            padding-left: 45%;
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+        }
+    }
+   
+}

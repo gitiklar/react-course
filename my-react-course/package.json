@@ -25,6 +25,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "node-sass": "^5.0.0"
+    "node-sass": "^5.0.0",
+    "react-colorful": "^4.4.4",
+    "tinycolor2": "^1.4.2"
   }
 }
