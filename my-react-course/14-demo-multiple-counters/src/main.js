@@ -5,10 +5,12 @@ import { useState } from 'react';
 ///////////////////////////////             Display              ///////////////////////////////
 
 function Display(props) {
-  const { count , reset } = props;
+  const { count , reset ,isMax } = props;
   
+  const backgroundColor = isMax ? 'lightBlue' : '#d2d2d2';
+
   const styleDivcontainer = {
-    background: '#d2d2d2',
+    background: backgroundColor,
     padding: '10px 2px',
     boxShadow: '0 0 1px 1px rgba(0,0,0,0.6)',
   }
@@ -33,39 +35,34 @@ function Display(props) {
 ///////////////////////////////             Counter              ///////////////////////////////
 
 function Counter(props) {
-  const { count , inc , reset} = props;
+  const { count , inc , reset , isMax} = props;
 
   return (
     <div>
-      <Display count = {count} reset = {reset}/>
+      <Display count = {count} reset = {reset} isMax = {isMax}/>
       <button onClick={inc}>Click Me</button>
     </div>
   );
 }
 
 
-///////////////////////////////             App              ///////////////////////////////
+///////////////////////////////             CounterGroup              ///////////////////////////////
 
 const CounterGroup = (props) => {
   const { countOfCounts } = props;
   const [ countsArray , setCountsArray] = useState(new Array(countOfCounts).fill(0));
-  const [ maxValue , setMaxValue ] = useState(0);
+  const maxValue = countsArray.reduce((acc, val)=> val > acc ? val : acc);;
 
-  function updateMaxValue() {
-      setMaxValue(countsArray.reduce((acc , val)=> val > acc ? val : acc));
-  }
-
-  function updateCount(index , reset) {
-      reset ? countsArray[index] = 0 : countsArray[index]++ ;
+  function inc(index , reset) {
+      reset ? countsArray[index] = 0 : countsArray[index]++;
       setCountsArray([...countsArray]);
-      updateMaxValue();
   }
 
   function createCounters() {
       const arrayOfCounters = [];
       for(let i = 0 ; i < countOfCounts ; i++) {
           arrayOfCounters.push(
-            <Counter key = {i} count = {countsArray[i]} inc = {()=>{updateCount(i , false)}} reset = {()=>{updateCount(i , true)}}/>
+            <Counter key = {i} count = {countsArray[i]} inc = {()=>{inc(i , false)}} reset = {()=>{inc(i , true)}}  isMax = {countsArray[i] === maxValue}/>
           );
       }
       return arrayOfCounters;
@@ -227,3 +224,4 @@ const App = () => {
 const root = document.querySelector('main');
 ReactDOM.render(<App />, root);
 */
+
