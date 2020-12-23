@@ -1,0 +1,53 @@
+main {
+  display: grid;
+  grid-template-areas: "h1   filter" "list filter";
+  height: 100vh; }
+  main h1 {
+    grid-area: h1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    margin: 0;
+    width: 50vw;
+    font-size: 3rem; }
+  main .listByFilter {
+    grid-area: list;
+    width: 50vw;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center; }
+    main .listByFilter select {
+      width: 50%;
+      height: 40vh; }
+  main .textBoxToFilter {
+    grid-area: filter;
+    width: 50vw;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    main .textBoxToFilter label {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-top: 1rem; }
+      main .textBoxToFilter label input {
+        margin-top: 1rem;
+        display: block;
+        width: 50%;
+        height: 46px; }
+    main .textBoxToFilter .ok.btn.btn-secondary.btn-lg {
+      background-color: black;
+      color: white;
+      width: 50%; }
+
+/*# sourceMappingURL=style.css.map */
