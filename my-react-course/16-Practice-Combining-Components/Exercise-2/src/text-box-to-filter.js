@@ -7,6 +7,7 @@ export default function TextBoxToFilter(props) {
 
     function handlerInputChange(e) {
         setcurrentValue(e.target.value);
+        updateFilter(e.target.value);/* Can remove just to render for every input */
     }
 
     return (
