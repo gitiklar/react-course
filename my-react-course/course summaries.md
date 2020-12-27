@@ -17,18 +17,18 @@
   - Add a new JavaScript file
   - Import the component and show it on screen
 
-# For react project need (in this order only!):
+# For react project with scss need (in this order only!):
 
 1.) Install Node.JS
 
 At the general folder of all projects or at the specific project do this to install react and webpack:</br>
 2.) create new folder and:</br>
 3.) npm init -y</br>
-4.) npm install --save-dev react react-dom webpack webpack-cli@3.3.12 babel-cli @babel/core @babel/preset-react html-webpack-plugin clean-webpack-plugin webpack-dev-server babel-loader mini-css-extract-plugin css-loader
+4.) npm install --save-dev react react-dom webpack webpack-cli@3.3.12 babel-cli @babel/core @babel/preset-react html-webpack-plugin clean-webpack-plugin webpack-dev-server babel-loader mini-css-extract-plugin css-loader node-sass sass-loader
 
 5.) Copy this structure into folder with package.json or new folder inside the same path:</br>
 <pre>
-css/main.css
+styles/main.scss
 html/index.html
 src/main.js
 </pre>
@@ -59,10 +59,11 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/, 
         use: [
           { loader: MiniCssExtractPlugin.loader, },
           'css-loader',
+          'sass-loader',
         ],
       },
       
@@ -86,6 +87,42 @@ module.exports = {
 };
 ```
 6.) npx webpack-dev-server -d for development environment or npx webpack -p for production environment
+
+7.) If not work can copy to new create package.json file and run inside empty folder npm install:
+
+```JS
+{
+  "name": "new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-react": "^7.12.10",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.3.3",
+    "node-sass": "^5.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "sass-loader": "^10.1.0",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "lodash": "^4.17.20"
+  }
+}
+
+```
 
 # -----------------    SASS/SCSS    ----------------
 ```
@@ -766,20 +803,19 @@ function SelectableList({ items , reset}) {
   );
 }
 
-
 const App = () => {
   const items = ['one', 'two', 'three', 'four', 'five' , 'six' , 'seven' , 'height' , 'nine' , 'ten'];
   const [keyS , setKey] = useState(0);
   
   function reset() {
-    setKey(keyS=> !keyS);
+    setKey(keyS => !keyS);
   }
 
   return (
     <div>
       <SelectableList key = {keyS} items={items} reset={reset}/>
     </div>
-  )
+  );
 };
 
 

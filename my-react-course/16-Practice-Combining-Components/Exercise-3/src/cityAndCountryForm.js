@@ -7,12 +7,11 @@ export default function CitiAndCountryForm({saveMyDataObj , dataObjectOfAllPages
     const myDataObj = {};
 
     function onInputHandler(e) {
-        e.target.id === "country" && (myDataObj["country"] = e.target.value);
-        e.target.id === "city" && (myDataObj["city"] = e.target.value);
+        myDataObj[e.target.id] = e.target.value;
         saveMyDataObj(myDataObj);
     }
 
-    return(
+    return (
         <>
             <form>
                 <h1>CitiAndCountryForm</h1>

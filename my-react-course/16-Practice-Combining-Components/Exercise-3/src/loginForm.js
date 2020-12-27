@@ -7,8 +7,7 @@ export default function LoginForm({saveMyDataObj , dataObjectOfAllPages}) {
     const myDataObj = {};
 
     function onInputHandler(e) {
-        e.target.id === "userName" && (myDataObj["userName"] = e.target.value);
-        e.target.id === "password" && (myDataObj["password"] = e.target.value);
+        myDataObj[e.target.id] = e.target.value;
         saveMyDataObj(myDataObj);
     }
 
