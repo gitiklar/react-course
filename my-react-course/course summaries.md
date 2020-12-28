@@ -30,7 +30,7 @@ At the general folder of all projects or at the specific project do this to inst
 <pre>
 styles/main.scss
 html/index.html
-src/main.js
+src/main.js   --->  import '../styles/main.scss'
 </pre>
 Create webpack.config.js file at the specific project and copy that:
 ```JS
@@ -88,7 +88,7 @@ module.exports = {
 ```
 6.) npx webpack-dev-server -d for development environment or npx webpack -p for production environment
 
-7.) If not work can copy to new create package.json file and run inside empty folder npm install:
+7.) If not work can copy to new create package.json file and run inside empty folder "npm install" and rename name to your name of th folder:
 
 ```JS
 {
