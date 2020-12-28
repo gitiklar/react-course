@@ -830,12 +830,19 @@ ReactDOM.render(<App />, root);
 How to use:
 ```JS
 import { useState, useRef } from 'react'; // import
+
 const divContainer = useRef(null); // definition
+
 <div data-my-stuff="hello" data-my-name = "gita" ref={divContainer}> </div> //connect
+
 function showMyThing() {
+
     const divDOM = divContainer.current; //DOMElement
+
     alert(`${divDOM.getAttribute("data-my-stuff")} ${divDOM.getAttribute("data-my-name")}`); //getAttribute
+
     alert(`${divDOM.dataset.myStuff} ${divDOM.dataset.myName}`); //dataset
+    
 }
 ```
 Example
