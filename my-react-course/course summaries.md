@@ -891,3 +891,61 @@ const root = document.querySelector('main');
 ReactDOM.render(<App />, root);
 
 ```
+# useEffect
+
+[State] -> Render -> UI -> State -> Render -> UI
+
+1. What's outside React?
+  - Global variables => document.title
+  - External APIs    => Youtube API
+  - Async actions    => Fetch data after state change
+  - Handle component mounting => run some init code
+
+2. useEffect Template
+
+  useEffect(function() {
+    // run code here if dependencies change
+
+    return function abort() {
+
+    }
+  }, []);
+
+
+3. Demo: change document title when state var changes
+
+example:
+-
+```JS
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { useState, useEffect } from 'react';
+
+function DocumentTitleChanger(props) {
+  const [title, setTitle] = useState(document.title);  
+
+  useEffect(function() {
+    document.title = title;    
+  }, [title]);
+
+  return (
+    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+  );
+}
+
+const App = () => {
+
+  return (
+    <div>
+      <h1>Hello World</h1>
+      <DocumentTitleChanger />
+    </div>
+  )
+};
+
+
+// main.js
+const root = document.querySelector('main');
+ReactDOM.render(<App />, root);
+
+```
