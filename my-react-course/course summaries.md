@@ -902,7 +902,7 @@ ReactDOM.render(<App />, root);
   - Handle component mounting => run some init code
 
 2. useEffect Template
-
+```JS
   useEffect(function() {
     // run code here if dependencies change
 
@@ -910,7 +910,7 @@ ReactDOM.render(<App />, root);
 
     }
   }, []);
-
+```
 
 3. Demo: change document title when state var changes
 
