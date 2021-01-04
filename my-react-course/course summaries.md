@@ -1001,7 +1001,7 @@ const root = document.querySelector('main');
 ReactDOM.render(<App />, root);
 
 ```
-example ajax from swapi:
+example ajax from swapi 1:
 -
 # main.js
 ```JS
@@ -1079,9 +1079,135 @@ export default function StarwarsCharacter({id}) {
 }
 ```
 
+example ajax from swapi 2
+-
+# main.js
+```JS
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+
+import StarWarsCharacter from './starWarsCharacter';
+import '../styles/main.scss';
+
+const InfoByID = () => {
+    const [id , setId] = useState(1);
+
+    return (
+        <>  
+            <div className="characterId">
+                <input type="number" value={id} onChange={(e)=>setId(e.target.value)}/>
+            </div>
+            <StarWarsCharacter id={id}/>
+        </>
+    );
+}
+
+const App = () => {
+    return (
+        <InfoByID/>
+    );
+}
+
+ReactDOM.render(<App/> , document.querySelector('main'));
+```
+# dataByID.js
+```JS
+import {useState , useEffect} from 'react';
+import $ from 'jquery';
+
+export default function dataByID(url) {
+    const [data , setData] = useState(null);
+
+    useEffect(()=>{
+        setData(null);
+        const xhr = $.getJSON(url , setData);
+        return () => xhr.abort();
+    }, [url]);
+    
+    return data;
+}
+```
+# starWarsCharacter.js
+```JS
+import React from 'react' ;
+
+import StarWarsFilm from './starWarsFilm';
+import dataById from '../src/dataById';
+
+function ShowCharacterInfo({data}) {
+    return (
+        <>
+            <div className="showCharacterInfo">
+                <h1>Character Info</h1>
+                <div>
+                    <p><b>name: </b>{data.name}</p>
+                    <p><b>height: </b>{data.height}</p>
+                    <p><b>mass: </b>{data.mass}</p>
+                    <p><b>hair color: </b>{data.hair_color}</p>
+                    <p><b>skin color: </b>{data.skin_color}</p>
+                    <p><b>eye color: </b>{data.eye_color}</p>
+                    <p><b>birth year: </b>{data.birth_year}</p>
+                    <p><b>gender: </b>{data.gender}</p>
+                </div>
+            </div>
+            <div className="starWarsFilm">
+                <h2>Character Films</h2>
+                {data.films.map((filmUrl , index) => <div key={filmUrl}> 
+                                                          <span className="h3FilmName number"> {index + 1}.) </span> 
+                                                          <StarWarsFilm id = {filmUrl.split('/')[5]}/> 
+                                                     </div> 
+                )}
+            </div>
+        </>
+    );
+}
+
+export default function StarWarsCharacter({id}) {
+    const data = dataById(`https://swapi.dev/api/people/${id}/`);
+    return (
+        <>
+            {data ? <ShowCharacterInfo data = {data}/> : <div> Loading , please wait ...</div>}
+        </>
+    );
+}
+```
+# starWarsFilm.js
+```JS
+import React from 'react';
+
+import dataById from '../src/dataById';
+
+function ShowFilmInfo({data}) {
+    return(
+        <>
+            <span className="h3FilmName">{data.title}</span>
+            <div className="showFilmInfo">
+                <p><b>Episode id:</b> {data.episode_id}</p>
+                <p><b>Opening crawl:</b></p>
+                <div>{data.opening_crawl}</div>
+                <p><b>Director:</b> {data.director}</p>
+                <p><b>Producer:</b> {data.producer}</p>
+                <p><b>Release_date:</b> {data.release_date}</p>
+            </div>
+        </>
+    );
+}
+
+export default function StarWarsFilm({id}) {
+    const data = dataById(`https://swapi.dev/api/films/${id}/`);
+
+    return (
+        <>
+            {data ? <ShowFilmInfo data = {data}/> : <div> loading film , please wait... </div>}
+        </>
+    )
+}
+```
+
 example Youtube API
 -
 ```JS
+
 
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
@@ -1101,6 +1227,7 @@ function YouTubePlayerComponent({videosIdList}) {
   useEffect(()=>{
     playRef.current.loadVideoById(currentId);
     playRef.current.stopVideo();
+    setIsPlay(false);
   } , [currentId]);
 
   useEffect(()=>{

@@ -1,0 +1,61 @@
+main {
+    display: grid;
+    grid-template-areas: "h1    h1"
+                         "left right"  ;
+
+    .characterId {
+        grid-area: h1;
+        height: 10vh;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & input {
+            background-color: black;
+            color: white;
+            width: 50vw;
+            padding-left: 25vw;
+            font-size: 1.5rem;
+        }
+    }
+
+    .showCharacterInfo {
+        background-color: black;
+        color: white;
+        grid-area: left;
+        width: 30vw;
+        height: 90vh;
+        h1 {
+            text-align: center;
+        }
+        div p {
+            font-size: 1.2rem;
+            margin-top: 5%;
+            margin-left: 25%;
+        }
+    }
+
+    .starWarsFilm {
+        grid-area: right;
+        width: 70vw;
+        height: 90vh;
+        overflow: auto;
+        background-color: white;
+        color: black;
+        h2 {
+            margin-top: 10px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        .showFilmInfo * {
+            margin: 5px 20px;
+        }
+        .showFilmInfo div {
+            width: 80%;
+            margin-left: 40px;
+        }
+        h3 {
+            font-size: 2rem;
+        }
+    }
+}

@@ -7,8 +7,8 @@ function ShowCharacterInfo(props) {
   const { data } = props;
   return (
     <>
-    <p><b>Name:</b> {data.name}</p>
-    <p><b>Hair Color:</b> {data.hair_color}</p>
+      <p><b>Name:</b> {data.name}</p>
+      <p><b>Hair Color:</b> {data.hair_color}</p>
     </>
   )
 }
