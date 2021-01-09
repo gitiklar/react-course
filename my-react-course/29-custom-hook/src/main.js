@@ -18,7 +18,7 @@ function useTimer(ms = 1000) {
 }
 
 function NewsTicker({items}) {
-  const index = useTimer();
+  const index = useTimer(2000);
   return (
     <p>{items[index % items.length]}</p>
   );
