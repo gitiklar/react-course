@@ -88,7 +88,7 @@ module.exports = {
 ```
 6.) npx webpack-dev-server -d for development environment or npx webpack -p for production environment
 
-7.) If not work can copy to new create package.json file and run inside empty folder "npm install" and rename name to your name of th folder:
+7.) If not work can copy to new create package.json file and run inside empty folder "npm install" and rename name to your name of the folder:
 
 ```JS
 {
@@ -1266,4 +1266,60 @@ const App = () => {
 }
 
 ReactDOM.render(<App/> , document.querySelector('main'));
+```
+# Custom Hook - example:
+```JS
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { useState, useEffect } from 'react';
+
+function useTimer(ms = 1000) {
+  const [tick , setTick] = useState(0);
+
+  function updateTick() {
+    setTick(v => v + 1);
+  }
+
+  useEffect(()=>{
+    const timerId = setInterval(updateTick , ms);
+    return ()=>clearInterval(timerId);
+  },[]);
+
+  return tick;
+}
+
+function NewsTicker({items}) {
+  const index = useTimer();
+  return (
+    <p>{items[index % items.length]}</p>
+  );
+}
+
+function Clock() {
+  const tick = useTimer();
+  return (
+    <p>tick... {tick}</p>
+  );
+}
+
+const App = () => {
+  const items = [
+    "I lit up from Reno",
+    "I was trailed by twenty hounds",
+    "Didn't get to sleep that night",
+    "Till the morning came around",
+  ];
+
+  return (
+    <div>
+      <Clock />
+      <NewsTicker items={items} />
+    </div>
+  )
+};
+
+
+// main.js
+const root = document.querySelector('main');
+ReactDOM.render(<App />, root);
 ```

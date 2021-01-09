@@ -2,53 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { useState, useEffect } from 'react';
 
-function NewsTicker(props) {
-  const { items } = props;
-  const [itemIndex, setItemIndex] = useState(0);
+function useTimer(ms = 1000) {
+  const [tick , setTick] = useState(0);
 
-  function tick() {
-    setItemIndex(val => (val + 1) % items.length);
+  function updateTick() {
+    setTick(v => v + 1);
   }
 
-  useEffect(function() {
-    const timer = setInterval(tick, 1000);
+  useEffect(()=>{
+    const timerId = setInterval(updateTick , ms);
+    return ()=>clearInterval(timerId);
+  },[]);
 
-    return function cancel() {
-      clearInterval(timer);
-    }
-  }, []);
-
-  return (
-    <p>{items[itemIndex]}</p>
-  )
+  return tick;
 }
 
-
-function Clock(props) {
-  const [ticks, setTicks] = useState(0);
-
-  function tick() {
-    setTicks(val => val + 1);
-  }
-
-  useEffect(function() {
-    const timer = setInterval(tick, 1000);
-
-    return function cancel() {
-      clearInterval(timer);
-    }
-  }, []);
-
+function NewsTicker({items}) {
+  const index = useTimer();
   return (
-    <div>
-      Ticks... {ticks}
-    </div>
+    <p>{items[index % items.length]}</p>
   );
 }
 
+function Clock() {
+  const tick = useTimer();
+  return (
+    <p>tick... {tick}</p>
+  );
+}
 
 const App = () => {
-
   const items = [
     "I lit up from Reno",
     "I was trailed by twenty hounds",
