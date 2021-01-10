@@ -31,14 +31,14 @@ CheckableList.defaultProps = {
 }
 
 
-function FilteredList({ list , filterFn , renderItem}) {
+function FilteredList({ list , filterFn , renderItem , filterInput}) {
   const [filter , setFilter] = useState('');
   const updateList = filterFn(list , filter);
 
   return (
     <>
       <h1>Filtered List</h1>
-      <input type="text" value={filter} onChange={(e)=>setFilter(e.target.value)}/>
+      {filterInput(filter , setFilter)}
       <ul style={{listStyle:"none"}}>
           {updateList.map(item=> renderItem(item))}
       </ul>
@@ -49,6 +49,12 @@ function FilteredList({ list , filterFn , renderItem}) {
 FilteredList.defaultProps = {
   filterFn:(list , filter)=>list.filter(item=>item.includes(filter)),
   renderItem:(item)=> <li key={item}>{item}</li>,
+  filterInput:(filter , setFilter) =>(
+    <label>
+      Filter: 
+      <input type="text" value={filter} onChange={(e)=>setFilter(e.target.value)}/>
+    </label>
+  ),
 }
 
 const App = () => {
@@ -69,7 +75,8 @@ const App = () => {
       <CheckableList items={colors} renderItem={(item)=><span style={{color:item}}>{item}</span>}/>
       <FilteredList list={(_.shuffle(anArrayOfEnglishWords)).slice(0,100)} 
                     filterFn={(list , filter)=> list.filter(item=>item.toUpperCase().includes(filter.toUpperCase()))}
-                    renderItem={(item)=><div style={{color:"white" , background:"black"}} key={item}>{item}</div>}/>
+                    renderItem={(item)=><div style={{color:"white" , background:"black"}} key={item}>{item}</div>}
+                    filterInput={(filter , setFilter)=>(<input style={{background:"black" , color:"white"}} type="text" value={filter} onChange={(e)=>setFilter(e.target.value)}/>)}/>
       <FilteredList list={(_.shuffle(anArrayOfEnglishWords)).slice(0,100)} />
     </div>
   )
