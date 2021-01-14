@@ -1,0 +1,30 @@
+
+$width:1000px;
+$height:400px;
+
+body {margin: 0;}
+
+main {
+    height: 100vh;
+    background-color: lightcoral;
+    h1 {
+        margin: 0;
+        text-align: center;
+    }
+    img {
+        width: $width;
+        height: $height;
+        display: block;
+        margin:auto;
+    }
+    .buttonsContainer {
+        width: $width;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        button.btn.btn-primary {
+            width: 50%;
+            font-size: 1rem;
+        }
+    }
+}

@@ -1,16 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MyForm } from './pages';
+
+import { MyFormsContainer } from './myFormsContainer';
+import { Login } from './login';
+import { CountryAndCity } from './countryAndCity';
+import { Hobbies } from './hobbies';
+import { Summary } from './summary';
 import { Page1, Page2 } from './hello_container';
+import '../styles/style.scss';
 
 const App = () => {
-
   return (
-    <div>
-      <Page1 />
-      <MyForm />
-    </div>
-  )
+    <>
+      <div>
+          <MyFormsContainer>
+                <Login/>
+                <CountryAndCity/>
+                <Hobbies/>
+                <Summary/>
+          </MyFormsContainer>
+      </div>
+
+      <div style={{marginTop:"20rem"}}>
+          <Page1/>
+          <Page2/>
+      </div>
+    </>
+  );
 };
 
 
