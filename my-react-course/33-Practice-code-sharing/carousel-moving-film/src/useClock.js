@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-export default function useClock(ms) {
-    const [tick , setTick] = useState(0);
-
+export default function useClockActivatesFunction(ms , fn) {
     useEffect(()=>{
-        const timerId = setInterval(()=>setTick(v=>v+1) , ms);
+        const timerId = setInterval(fn , ms);
         return ()=> clearInterval(timerId);
     },[]);
-
-    return [tick , setTick];
 }

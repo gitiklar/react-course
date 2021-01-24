@@ -1,22 +1,41 @@
-import React, { useState } from 'react';
-import useClock from './useClock';
+import React, { useRef, useState } from 'react';
+import useClockActivatesFunction  from './useClock';
 
 export default function Carousel(props) {
-    const imagesCount = props.children.length;
-    const [imageIndex , setImageIndex] = useClock(3000);
-    const imageClassName = 'animate__animated animate__slideInLeft';
+    const [left , setLeft] = useState(0);
+    useClockActivatesFunction(5000 , updateNextLeft);
 
-    function getCurrentImage() {
-        const currentChild = React.Children.toArray(props.children)[imageIndex % imagesCount];
-        return React.cloneElement(currentChild , {className:imageClassName});
+    const imagesCount = React.Children.count(props.children);
+    const imageClass = useRef('');
+    const imgWidth = 1000;
+
+    function updateNextLeft() {
+        imageClass.current = 'animate__animated animate__slideInRight';
+        setLeft(v => v === (imgWidth * (imagesCount-1) * -1) ? 0 : v - imgWidth);
     }
 
+    function updatePreviousLeft() {
+        imageClass.current = 'animate__animated animate__slideInLeft';
+        setLeft(v => v === 0 ? (imgWidth * (imagesCount-1) * -1) : v + imgWidth);
+    }
+
+    const btnStyle = {width:"50%" , backgroundColor:"#5050da" , color:"white"};
+    const meshStyle = {width:`${imgWidth}px`, height:"400px" , position:"relative" , marginLeft: "calc(50vw - 500px)" , overflow:"hidden" , backgroundColor:"black"};
+    const filmStyle = {width:"999999px" , height:"400px" , position:"absolute" , left:`${left}px`};
+    const imageStyle = {width:`${imgWidth}px` , height:"400px"};    
+
     return (
-        <> 
-            {getCurrentImage()}
-            <div className="buttonsContainer">
-                <button className="btn btn-primary" onClick={()=>setImageIndex(v => v === 0 ? imagesCount - 1 : v - 1)}>Previous</button>
-                <button className="btn btn-primary" onClick={()=>setImageIndex(v => v + 1)}>Next</button>
+        <>
+            <div style={meshStyle}> 
+                <div style={filmStyle}>
+                    {props.children.map((child , index)=>
+                        React.cloneElement(child , {style : imageStyle , className: index === (left / (imgWidth*-1)) ? imageClass.current : ''})
+                    )}
+                </div>
+            </div>
+            <div style={{width:`${imgWidth}px` , margin:"auto"}}>
+                <button style={btnStyle} onClick={()=>updatePreviousLeft()}>Previous</button>
+                <button style={btnStyle} onClick={()=>updateNextLeft()}>Next</button>
             </div>
         </>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import hobbies  from 'hobbies';
+import hobbies  from './hobbiesData';
 
 export function Hobbies({dataObjOfAllPages , updateDataObjOfAllPages}) {      
     const selectedHobbies = dataObjOfAllPages.hobbies || new Set();
