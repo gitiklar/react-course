@@ -9,11 +9,11 @@ export default function App() {
   return (
     <>
         <NumbersBox delta={delta} setDelta={setDelta}/>
-        <Counter delta={delta} value={1} setDelta={setDelta}/>
-        <Counter delta={delta} value={2} setDelta={setDelta}/>
-        <Counter delta={delta} value={3} setDelta={setDelta}/>
-        <Counter delta={delta} value={4} setDelta={setDelta}/>
-        <Counter delta={delta} value={5} setDelta={setDelta}/>
+        <Counter delta={delta} maxValue={10} setDelta={setDelta}/>
+        <Counter delta={delta} maxValue={20} setDelta={setDelta}/>
+        <Counter delta={delta} maxValue={30} setDelta={setDelta}/>
+        <Counter delta={delta} maxValue={40} setDelta={setDelta}/>
+        <Counter delta={delta} maxValue={50} setDelta={setDelta}/>
     </>
   );
 }

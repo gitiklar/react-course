@@ -2,12 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 
 export default function Counter(props) {
-  const {delta , value , setDelta} = props;
+  const {delta , maxValue , setDelta} = props;
   const [count , setCount] = useState(0);
 
   function inc() {
     const newVal = count + delta;
-    if(newVal > value*10 && delta!==1) {
+    if(newVal > maxValue && delta!==1) {
       setDelta(1);
     } else {
       setCount(newVal);
@@ -24,7 +24,7 @@ export default function Counter(props) {
 
   return(
     <div>
-        <label>I was clicked {count} times and max to change increase to 1: {10*value}
+        <label>I was clicked {count} times and max to change increase to 1: {maxValue}
             <button onClick = {inc}>Click me to increase</button>
             <button onClick = {dec} >Click me to decrease</button>
             <button onClick = {reset}>Click me to reset</button>
