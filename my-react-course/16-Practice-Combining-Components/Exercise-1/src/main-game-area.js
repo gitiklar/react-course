@@ -1,13 +1,18 @@
 import React from 'react';
 
-import Squers from './squers';
-
-export default function MainGameArea(props) {
-    const { countOfSquers , updateScore , indexOfRed , randomNewRed} = props;
-
+export default function MainGameArea( { countOfSquers , checkClick , indexOfRed }) {  
+    const style = {width: "25%", border: "1px solid black", };
     return (
         <div className = "main">
-            <Squers countOfSquers = {countOfSquers}  indexOfRed = {indexOfRed} randomNewRed = {randomNewRed} updateScore = {updateScore}/>
+            {
+                new Array(countOfSquers).fill(0).map((_ , i)=>(
+                    <div className={ i === indexOfRed ? "red" : "white"} 
+                        style={style} 
+                        key={i} 
+                        onClick={()=> {checkClick(i);}}>
+                    </div>
+                ))
+            }
         </div>
     );
 }

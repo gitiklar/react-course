@@ -1,115 +1,19 @@
-1-6 , 9 (class) Person                Component
-7-8             Counter               Component
-11/1            TimeInitConverter     Component
-11/2            SynchronizedTextBoxes Component
-11/3            GuessingNumberGame    Component
-11/4            ChooseColor           Component
-11/5            ChooseColors          Component
-
-
-
-------------------------------------------------------------------------
-# Save an array or object (mutable) in State examples:
-
 ```JS
-const arr = [10, 20, 30];
-const newArray = [...arr];
-newArray[0] = 10;
-setStuff(newArray);
-
-const obj = { a: 10, b: 20 };
-const newObj = {...obj};
-newObj.a = 50;
-setStuff(newObj);
+1-6 , 9 (class) Person                      Component
+7-8             Counter                     Component
+11/1            TimeInitConverter           Component
+11/2            SynchronizedTextBoxes       Component
+11/3            GuessingNumberGame          Component
+11/4            ChooseColor                 Component
+11/5            ChooseColors                Component
+12              CounterDisplayMax           Component
+13              SelectableList              Component
+14              CounterDisplayMaxColor      Component
+15              SelectedCountryAndCity      Component - Genery by component 'SelectedOptions' & Not genery
+16/1            CatchTheRedGame             Component
+16/2            FilterItemsFromAList        Component
+16/3            FormWhithThreePages         Component
 ```
-- Example of Counters:
-
-```JS
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { useState } from 'react';
-
-///////////////////////////////             Display              ///////////////////////////////
-
-function Display(props) {
-  const { count , reset ,isMax } = props;
-  
-  const backgroundColor = isMax ? 'lightBlue' : '#d2d2d2';
-
-  const styleDivcontainer = {
-    background: backgroundColor,
-    padding: '10px 2px',
-    boxShadow: '0 0 1px 1px rgba(0,0,0,0.6)',
-  }
-
-  const styleDivScore = {
-    display: 'inline-block',
-    background: 'black',
-    color: 'white',
-    padding: '10px',
-    fontFamily: 'Orbitron, sans-serif',
-  }
-
-  return (
-    <div style={styleDivcontainer}>
-      You count:
-      <div style={styleDivScore}>{count}</div>
-      <button onClick = {reset}>Reset</button>
-    </div>
-  );
-}
-
-///////////////////////////////             Counter              ///////////////////////////////
-
-function Counter(props) {
-  const { count , inc , reset , isMax} = props;
-
-  return (
-    <div>
-      <Display count = {count} reset = {reset} isMax = {isMax}/>
-      <button onClick={inc}>Click Me</button>
-    </div>
-  );
-}
-
-
-///////////////////////////////             CounterGroup              ///////////////////////////////
-
-const CounterGroup = (props) => {
-  const { countOfCounts } = props;
-  const [ countsArray , setCountsArray] = useState(new Array(countOfCounts).fill(0));
-  const maxValue = countsArray.reduce((acc, val)=> val > acc ? val : acc);;
-
-  function inc(index , reset) {
-      reset ? countsArray[index] = 0 : countsArray[index]++;
-      setCountsArray([...countsArray]);
-  }
-
-  function createCounters() {
-      const arrayOfCounters = [];
-      for(let i = 0 ; i < countOfCounts ; i++) {
-          arrayOfCounters.push(
-            <Counter key = {i} count = {countsArray[i]} inc = {()=>{inc(i , false)}} reset = {()=>{inc(i , true)}}  isMax = {countsArray[i] === maxValue}/>
-          );
-      }
-      return arrayOfCounters;
-  }
-
-  return (
-    <div> 
-        <p>The largest count is : {maxValue} </p>
-        {createCounters()}
-    </div>
-  )
-};
-
-
-///////////////////////////////             main.js              ///////////////////////////////
-const root = document.querySelector('main');
-ReactDOM.render(<CounterGroup countOfCounts = {5} />, root);
-
-```
-
 # lists and key
 example 1:
 -

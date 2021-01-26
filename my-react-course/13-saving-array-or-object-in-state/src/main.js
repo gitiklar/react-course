@@ -11,7 +11,7 @@ function SelectableList(props) {
       !add && selectedItems.delete(item);
       setSelectedItems(new Set(selectedItems));
   }
-
+  
   return (
     <>
       <p> Selected items: {Array.from(selectedItems).join(' , ')} </p>
@@ -21,7 +21,7 @@ function SelectableList(props) {
                   <li key = {item} style={{direction:"rtl"}}>
                       <label>
                           {item}
-                          <input type ="checkbox" onChange = {(e)=>{onChangeCheckHandler(e.target.checked , item)}}></input>
+                          <input type ="checkbox" checked={selectedItems.has(item)} onChange = {(e)=>{onChangeCheckHandler(e.target.checked , item)}}></input>
                       </label>
                   </li>
                 ))

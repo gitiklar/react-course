@@ -13,24 +13,27 @@ export default function GameCatchTheRed(props) {
         goodClick  && setScore(score + 10);
         !goodClick && setScore(score - 5);
     }
+
+    function checkClick(indexOfClick) {
+        updateScore(indexOfClick === indexOfRed);
+        indexOfClick === indexOfRed && setIndexOfRed(randomNumberFromZeroToCount());
+    }
       
     function randomNumberFromZeroToCount() {
         return Math.floor(Math.random()*countOfSquers);
     }
 
-    function randomNewRed() {
-        setIndexOfRed(randomNumberFromZeroToCount());
-    }
-
     function newGame() {
         setScore(0);
-        randomNewRed();
+        setIndexOfRed(randomNumberFromZeroToCount());
     }
 
     return (
         <>
             <h1>Catch the red</h1>
-            <MainGameArea countOfSquers = {countOfSquers} updateScore = {updateScore} indexOfRed = {indexOfRed} randomNewRed = {randomNewRed}/>
+            <MainGameArea countOfSquers = {countOfSquers} 
+                          checkClick = {checkClick} 
+                          indexOfRed = {indexOfRed}/>
             <SideBox score = {score} newGame = {newGame}/>
         </>
     );
