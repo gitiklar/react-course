@@ -7,7 +7,7 @@ function CheckableList({items}) {
   const [selectedItems , setSelectedItems] = useState(new Set());
   const [key , setKey] = useState(0);
 
-  function removeAllChecked() {
+  function unselectAll() {
     setKey(key => !key);
     setSelectedItems(new Set());
   }
@@ -20,7 +20,7 @@ function CheckableList({items}) {
 
   return (
     <>
-      <button onClick={removeAllChecked}>Remove all checked</button>
+      <button onClick={unselectAll}>Unselect all</button>
       <p>{Array.from(selectedItems).join(',')}</p>
       <ul key={key}>
           {items.map(item =>(

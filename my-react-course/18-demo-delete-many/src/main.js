@@ -20,7 +20,6 @@ function SelectableList({ items , reset}) {
     <>
       <button onClick = {deleteSelectedItemsFromShowItems}>Delete</button>
       <button onClick = {reset}>Reset</button>
-
       <ul>
         {showItems.map(item => (
           <li key={item}>
