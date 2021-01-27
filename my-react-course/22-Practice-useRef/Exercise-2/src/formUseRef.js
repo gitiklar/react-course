@@ -1,7 +1,6 @@
 import React, { useState , useRef, useEffect } from 'react';
 
-export default function FormUseRef({updateData , showSuccessPageHandler , formData, showSuccessPage}) {
-    if (showSuccessPage) return false;
+export default function FormUseRef({updateData , showSuccessPageHandler , formData}) {
     const formRef = useRef(null);
     const [displayAlert , setDispalyAlert] = useState("none");
     const alertStyle = { textAlign:"center", borderColor: "#a3c6f8", display : displayAlert,};
@@ -10,9 +9,9 @@ export default function FormUseRef({updateData , showSuccessPageHandler , formDa
         for(let key of Object.keys(formData)) {
             formRef.current.querySelector(`input#${key}`).value = formData[key] || '';
         }
-    },[formData]);  
+    },[formData]);
 
-    function passwordIsGood(data) {
+    function confirmPasswordFn(data) {
         return data.password === data.confirmPassword;
     }
 
@@ -20,8 +19,8 @@ export default function FormUseRef({updateData , showSuccessPageHandler , formDa
         const allInputs = formRef.current.querySelectorAll('input:not([type="button"])');
         const data = {};
         Array.from(allInputs).forEach(inp=> data[inp.id] = inp.value);
-        passwordIsGood(data) && (setDispalyAlert("none") , showSuccessPageHandler());
-        !passwordIsGood(data) && setDispalyAlert("block");
+        !confirmPasswordFn(data) && setDispalyAlert("block");
+        confirmPasswordFn(data) && (setDispalyAlert("none") , showSuccessPageHandler());
         updateData(data);
     }
 

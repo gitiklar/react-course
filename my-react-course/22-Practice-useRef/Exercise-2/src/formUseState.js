@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 
-export default function FormUseState({updateData , showSuccessPageHandler , formData, showSuccessPage}) {
-    if (showSuccessPage) return false;
+export default function FormUseState({updateData , showSuccessPageHandler , formData}) {
     const {userName , password ,confirmPassword } = formData;
     const [displayAlert , setDispalyAlert] = useState("none");
     const alertStyle = { textAlign:"center", borderColor: "#a3c6f8", display : displayAlert,};
 
-    function confirmPasswordIsGood() {
+    function confirmPasswordFn() {
         return password === confirmPassword;
     }
 
     function loginHandler() {
-        confirmPasswordIsGood() && (showSuccessPageHandler() , setDispalyAlert("none"));
-        !confirmPasswordIsGood() && setDispalyAlert("block");
+        !confirmPasswordFn() && setDispalyAlert("block");
+        confirmPasswordFn() && (showSuccessPageHandler() , setDispalyAlert("none"));
     }
 
     return (

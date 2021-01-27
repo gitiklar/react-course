@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function SuccessPage({formData , returnToForm , showSuccessPage}) {
-    if (!showSuccessPage) return false;
+export default function SuccessPage({formData , returnToForm}) {
     const {userName , password } = formData ;
     
     return(

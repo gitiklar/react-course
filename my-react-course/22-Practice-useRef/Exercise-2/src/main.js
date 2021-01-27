@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import '../styles/main.scss';
 import FormUseState from './formUseState';
+import FormUseRef from './formUseRef';
 import SuccessPage from './successPage';
 
 const App = () => {
@@ -13,57 +15,12 @@ const App = () => {
         formData[e.target.id] = e.target.value;
         updateFormData({...formData});
     }
-
-    function showSuccessPageHandler() {
-        setShowSuccessPage(true);
-    }
-
-    function returnToForm() {
-        setShowSuccessPage(false);
-    }
-
-    return (
-        <>
-            { 
-             <>
-               <FormUseState updateData = {updateData} showSuccessPageHandler = {showSuccessPageHandler} formData={formData} showSuccessPage={showSuccessPage}/>
-               <SuccessPage formData = {formData} returnToForm = {returnToForm} showSuccessPage={showSuccessPage}/>
-             </>
-            }            
-        </>
-    );
-}
-
-ReactDOM.render(<App/> , document.querySelector('main'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-
-import '../styles/main.scss';
-import FormUseRef from './formUseRef';
-import SuccessPage from './successPage';
-
-const App = () => {
-    const [formData , updateFormData] = useState({});
-    const [showSuccessPage , setShowSuccessPage] = useState(false);
-
+    //updateData for FormUseRef
+    /*
     function updateData(formData) {
         updateFormData(formData);
     }
-
+    */
     function showSuccessPageHandler() {
         setShowSuccessPage(true);
     }
@@ -76,12 +33,12 @@ const App = () => {
         <>
             { 
              <>
-               <FormUseRef updateData = {updateData} showSuccessPageHandler = {showSuccessPageHandler} formData={formData} showSuccessPage={showSuccessPage}/>
-               <SuccessPage formData = {formData} returnToForm = {returnToForm} showSuccessPage={showSuccessPage}/>
+               {!showSuccessPage && <FormUseState updateData = {updateData} showSuccessPageHandler = {showSuccessPageHandler} formData={formData}/>}
+               {showSuccessPage  && <SuccessPage formData = {formData} returnToForm = {returnToForm}/> }
              </>
             }            
         </>
     );
 }
+
 ReactDOM.render(<App/> , document.querySelector('main'));
-*/
