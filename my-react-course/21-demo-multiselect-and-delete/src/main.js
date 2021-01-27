@@ -13,35 +13,8 @@ const MultiSelectAndDeleteList = (props) => {
     setVisibleItems(items);
   }
 
-  function deleteSelected3() {
-    const selectedInputs = ulRef.current.querySelectorAll('input:checked');
-    const selectedItems = Array.from(selectedInputs).map(inp => inp.parentElement.textContent);
-    setVisibleItems(v => v.filter(x => !selectedItems.includes(x)));
-  }
-
   function deleteSelected() {
-    setVisibleItems([...ulRef.current.querySelectorAll('input:not(:checked)')].map(inp => inp.parentElement.textContent));
-  }
-
-  function deleteSelected2() {
-    const labels = ulRef.current.querySelectorAll('label');
-    const visibleItems = [];
-    for (let label of labels) {
-        if(label.querySelector('input').checked === false) {
-            visibleItems.push(label.textContent);
-        }
-    }
-    setVisibleItems(visibleItems);
-  }
-
-  function deleteSelected1() {
-    const notSelectedItems = [];
-    for (let li of ulRef.current.children) {
-      const label = li.children[0];
-      const input = label.children[0];
-      input.checked === false && notSelectedItems.push(label.textContent);
-    }
-    setVisibleItems(notSelectedItems);
+      setVisibleItems([...ulRef.current.querySelectorAll('input:not(:checked)')].map(inp => inp.nextSibling.textContent));
   }
 
   return (
@@ -60,9 +33,7 @@ const MultiSelectAndDeleteList = (props) => {
       </ul>
     </div>
   );
-
 }
-
 
 const App = () => {
   const items = ['one', 'two', 'three', 'four', 'five'];
@@ -72,7 +43,6 @@ const App = () => {
     </div>
   )
 };
-
 
 // main.js
 const root = document.querySelector('main');

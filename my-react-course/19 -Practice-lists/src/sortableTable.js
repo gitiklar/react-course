@@ -1,17 +1,21 @@
 import React , { useState } from 'react';
 
 function getSortedData(indexOfColumnAndDirection , data) {
-    if(!indexOfColumnAndDirection.index) return data;
-    
+    function sortMe(a , b) {
+        if(indexOfColumnAndDirection.direction === 'up') return (a > b) ? -1 : (a < b) ? 1 : 0;
+        return (a < b) ? -1 : (a > b) ? 1 : 0;
+    }
+
     return [data[0]].concat(data.slice(1).sort((b , a) => {
-        const textA = a[indexOfColumnAndDirection.index].toUpperCase();
-        const textB = b[indexOfColumnAndDirection.index].toUpperCase();
-        if(indexOfColumnAndDirection.direction === 'up') return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
-                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        let itemA = a[indexOfColumnAndDirection.index];
+        let itemB = b[indexOfColumnAndDirection.index];
+        indexOfColumnAndDirection.index !== 0 && (itemA = itemA.toUpperCase() , itemB = itemB.toUpperCase());
+        return sortMe(itemA , itemB);
     }));
 }
 
-export default function SortableTable ({data}) {
+
+export default function SortableTable({data}) {
     const [indexOfColumnAndDirection , setindexOfColumnAndDirection] = useState( {index: 0 , direction: ''} ) ;
 
     const sortedData = getSortedData(indexOfColumnAndDirection, data);
@@ -24,12 +28,12 @@ export default function SortableTable ({data}) {
     return (
         <table className= "table table-hover table-dark">
             <tbody>{
-                sortedData.map ((row , indexR) =>
-                    <tr key = {row[0]}>
+                sortedData.map ((row , i) =>
+                    <tr key = {i}>
                         {
-                            row.map((item , indexC) => 
-                                <td key = {item+row[3]} 
-                                    onClick = { indexR === 0 ? () => { clickItemHandler(indexC) } : ()=>{}}>
+                            row.map((item , j) => 
+                                <td key = {j} 
+                                    onClick = { i === 0 ? () => { clickItemHandler(j) } : ()=>{}}>
                                     {item}
                                 </td>
                             )
@@ -39,5 +43,5 @@ export default function SortableTable ({data}) {
             }
             </tbody>    
         </table>
-    )
+    );
 }
