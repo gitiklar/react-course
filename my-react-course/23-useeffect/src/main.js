@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 
 function DocumentTitleChanger(props) {
   const [title, setTitle] = useState(document.title);
-
+debugger;
   useEffect(function(){
+      debugger;
       document.title = title;
   }, [title])
 
