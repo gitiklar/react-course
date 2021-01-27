@@ -12,12 +12,11 @@ export default class DatePicker extends React.Component {
   }
 
   render() {
-    
     const {date} = this.state;
     return (
       <div style={{fontSize:'1.5rem'}}>
         <h1>Demo2</h1>
-        <input type='dateTime' value={this.state.date} ref = {this.inputDateRef}  onInput={(e)=>{this.setState({date:e.target.value})}}/>
+        <input type='dateTime' value={date} ref = {this.inputDateRef}  onInput={(e)=>{this.setState({date:e.target.value})}}/>
         <div>   <label>{date}</label>   </div>
         <h1><pre>--------------------------------------------------------------</pre></h1>
       </div>

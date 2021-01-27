@@ -34,8 +34,10 @@ export default class Demo5 extends React.Component {
   render() {
     return (
       <div>
+        <h1>Demo5</h1>
         <p>{this.state.msg && `${this.state.msg} count of bomb ${this.state.bomb}`}</p>
         <Bomb/>
+        <h1><pre>--------------------------------------------------------------</pre></h1>
       </div>
     );
   }

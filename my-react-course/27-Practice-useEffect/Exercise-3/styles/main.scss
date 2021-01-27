@@ -2,6 +2,7 @@ main {
     display: grid;
     grid-template-areas: "h1    h1"
                          "left right"  ;
+    height: 100vh;
 
     .characterId {
         grid-area: h1;
@@ -18,7 +19,18 @@ main {
             font-size: 1.5rem;
         }
     }
-
+    .error , .loading {
+        background-color: black;
+        color: red;
+        font-size: 2rem;
+        width: 100vw;
+        height: 100vh;
+        margin: auto;
+    }
+    .loading {
+        background-color: white;
+        color: black;
+    }
     .showCharacterInfo {
         background-color: black;
         color: white;

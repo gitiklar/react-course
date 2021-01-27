@@ -15,19 +15,7 @@ function ShowCharacterInfo({dataCharacterDescription , dataFilms}) {
 export default function StarwarsCharacter({id}) {
     const [dataCharacterDescription , setDataCharacterDescription] = useState(null);
     const [dataFilms , setDataFilms] = useState(null);
-/*
-    //films comes one one
-    function pushDataToDataFilms(data) {
-        setDataFilms(oldData=>[...oldData||[], data]);
-    }
-    
-    useEffect(()=>{
-        if(!dataCharacterDescription) return;
-        const filmsUrls = dataCharacterDescription.films;
-        const xhrFilms = filmsUrls.map(filmsUrl=>$.getJSON(filmsUrl , pushDataToDataFilms));
-        return(()=>xhrFilms.forEach(xhrFilm => xhrFilm.abort()));
-    },[dataCharacterDescription]);
-*/
+
 
     useEffect(()=>{
         if(!dataCharacterDescription) return;
@@ -47,8 +35,21 @@ export default function StarwarsCharacter({id}) {
     return (
         <div>
             {dataCharacterDescription && dataFilms ? 
-            <ShowCharacterInfo dataCharacterDescription = {dataCharacterDescription} dataFilms = {dataFilms}/> :
-            'loading, please wait...'}
+            <ShowCharacterInfo dataCharacterDescription = {dataCharacterDescription} dataFilms = {dataFilms}/> : 'loading, please wait...'}
         </div>
     );
 }
+
+/*
+    //films comes one one
+    function pushDataToDataFilms(data) {
+        setDataFilms(oldData=>[...oldData||[], data]);
+    }
+    
+    useEffect(()=>{
+        if(!dataCharacterDescription) return;
+        const filmsUrls = dataCharacterDescription.films;
+        const xhrFilms = filmsUrls.map(filmsUrl=>$.getJSON(filmsUrl , pushDataToDataFilms));
+        return(()=>xhrFilms.forEach(xhrFilm => xhrFilm.abort()));
+    },[dataCharacterDescription]);
+*/

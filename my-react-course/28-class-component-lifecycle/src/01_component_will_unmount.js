@@ -5,7 +5,6 @@ export default class Demo1 extends React.Component {
     super(props);
     this.state = {m:0 , s:0};
     this.timerID = setInterval(this.tick.bind(this), 1000);
-
   }
 
   componentWillUnmount() {

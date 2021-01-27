@@ -5,41 +5,21 @@ import { useState, useEffect } from 'react';
 function Timer(props) {
   const [ticks, setTicks] = useState(0);
 
-  useEffect(function() {
+  useEffect(()=> {
     // What to do
-    const timer = setInterval(function() {
-      console.log('Ouch!');
-      setTicks(t => t + 1); //and not setTicks(ticks + 1) -> this option will look on the first tick only and will not update on each calling.
-    }, 1000);
-    
+    const timer = setInterval(() => {
+      setTicks(v => v + 1);  console.log('Ouch!');
+      //and not setTicks(ticks + 1) -> this option will look on the first tick only and will not update on each calling. because it is happend after the first render only
+    } , 1000);
     // What to undo
-    return function abort() {
-      clearInterval(timer);
-    }
-    
+    return () => { clearInterval(timer); }
     // When to undo/do
   }, []);
-
-  /*
-  useEffect(()=>{
-    const timerId = setTimeout(()=>{
-          setTicks(val => val + 1);
-    },1000);
-
-    return (()=>{
-      clearTimeout(timerId);
-    });
-
-  } , [ticks])
-*/
 
   return (
     <p>Ticks: {ticks}</p>
   );
-  
 }
-
-
 
 const App = () => {
   const [showTimer, setShowTimer] = useState(true);

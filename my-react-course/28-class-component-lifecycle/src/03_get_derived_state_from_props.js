@@ -30,9 +30,9 @@ class TextBox extends React.Component {
   }
 
   onChangeHandler(newText) {
-    newText!==this.props.text ? this.setState({text : newText , changed : true}) : this.setState({text : newText , changed : false});
+    this.setState({text : newText , changed : newText!==this.props.text ? true : false});
   }
-
+  //Can return a new state if need
   static getDerivedStateFromProps(props , state) {
     if(!state.changed || state.text === props.text) return {text : props.text , changed : false};
     return null;
@@ -61,12 +61,14 @@ export default class Demo3 extends React.Component {
   render() {
     return (
       <div>
+        <h1>Demo3</h1>
         <button onClick={()=>{this.setState({currentText: this.getText()})}}>Click to change the text</button>
         <TextBox text={this.state.currentText}/>
         <TextBox text={this.state.currentText}/>
         <TextBox text={this.state.currentText}/>
         <TextBox text={this.state.currentText}/>
         <TextBox text={this.state.currentText}/>
+        <h1><pre>--------------------------------------------------------------</pre></h1>
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import React from 'react' ;
 
 import StarWarsFilm from './starWarsFilm';
-import dataById from '../src/dataById';
+import useRemoteData from './useRemoteData';
 
 function ShowCharacterInfo({data}) {
     return (
@@ -32,10 +32,13 @@ function ShowCharacterInfo({data}) {
 }
 
 export default function StarWarsCharacter({id}) {
-    const data = dataById(`https://swapi.dev/api/people/${id}/`);
+    const [data , isLoading , error] = useRemoteData(`https://swapi.dev/api/people/${id}/`);
+    
+    if (error) return <p className='error'>{error}</p>
+
+    if (isLoading) return <p className='loading'> Loading character , please wait... </p>
+
     return (
-        <>
-            {data ? <ShowCharacterInfo data = {data}/> : <div> Loading , please wait ...</div>}
-        </>
+        <ShowCharacterInfo data = {data}/>
     );
 }

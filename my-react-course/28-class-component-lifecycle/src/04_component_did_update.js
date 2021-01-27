@@ -20,7 +20,7 @@ export default class Demo4 extends React.Component {
     this.setState({ playing:!this.state.playing });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps , prevState) {
     this.state.playing ? this.player.playVideo() : this.player.pauseVideo();
   }
 
@@ -33,14 +33,14 @@ export default class Demo4 extends React.Component {
   render() {
     return (
       <>
+        <h1>Demo4</h1>
         <button onClick={this.toggle}>Play/pause</button>
         <div ref={this.playRef}></div>
+        <h1><pre>--------------------------------------------------------------</pre></h1>
       </>
     );
   }
 }
-
-
 
 
 

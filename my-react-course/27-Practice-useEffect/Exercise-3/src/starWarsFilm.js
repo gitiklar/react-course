@@ -1,6 +1,6 @@
 import React from 'react';
 
-import dataById from '../src/dataById';
+import useRemoteData from './useRemoteData';
 
 function ShowFilmInfo({data}) {
     return(
@@ -19,11 +19,15 @@ function ShowFilmInfo({data}) {
 }
 
 export default function StarWarsFilm({id}) {
-    const data = dataById(`https://swapi.dev/api/films/${id}/`);
+    const [data , isLoading , error] = useRemoteData(`https://swapi.dev/api/films/${id}/`);
+
+    if (error) return <p className='error'>{error}</p>
+
+    if (isLoading) return <p className='loading'> Loading film , please wait... </p>
 
     return (
         <>
-            {data ? <ShowFilmInfo data = {data}/> : <div> loading film , please wait... </div>}
+            <ShowFilmInfo data = {data}/>
         </>
-    )
+    );
 }
