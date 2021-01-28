@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { MyFormsContainer } from './myFormsContainer';
+import { FormsContainer } from './formsContainer';
 import { Login } from './login';
 import { CountryAndCity } from './countryAndCity';
 import { Hobbies } from './hobbies';
@@ -13,12 +13,12 @@ const App = () => {
   return (
     <>
       <div>
-          <MyFormsContainer>
+          <FormsContainer>
                 <Login/>
                 <CountryAndCity/>
                 <Hobbies/>
                 <Summary/>
-          </MyFormsContainer>
+          </FormsContainer>
       </div>
 
       <div style={{marginTop:"20rem"}}>

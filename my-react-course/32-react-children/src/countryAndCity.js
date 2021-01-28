@@ -1,51 +1,36 @@
 import React from 'react';
 
-function Countries({countries , dataObjOfAllPages , updateDataObjOfAllPages}) {
-    function handlerInputChange(e) {
-      updateDataObjOfAllPages({[e.target.id] : e.target.value , city: null});
-    }
-  
-    return (
-      <div className="form-outline mb-4">
-          <label className="form-label" htmlFor="country">Country:</label>
-          <select className="custom-select" id="country" value={dataObjOfAllPages.country||'default'} onChange={(e)=>handlerInputChange(e)}>
-            <option disabled value="default">Choose country...</option>
-            {countries.map(country=>
-              <option key={country} value={country}>{country}</option>)}
-          </select>
-        </div>
-    );
+const SelectedOptions = ({name, items , selectedItem , updateDataObjOfAllPages}) => {
+  function handlerInputChange(e) {
+    const dataObj = {[e.target.id] : e.target.value, }
+    name === 'country' && (dataObj.city = null);
+    updateDataObjOfAllPages(dataObj);
   }
-  
-  function Cities({cities , dataObjOfAllPages , updateDataObjOfAllPages}) {
-    function handlerInputChange(e) {
-      updateDataObjOfAllPages({[e.target.id] : e.target.value});
-    }
-  
-    return (
-      <div className="form-outline mb-4">
-          <label className="form-label" htmlFor="city">City:</label>
-          <select className="custom-select" id="city" value={dataObjOfAllPages.city||'default'} onChange={(e)=>handlerInputChange(e)}>
-            <option disabled value="default">Choose city...</option>
-            {cities.map(city=>
-              <option key={city} value={city}>{city}</option>)}
-          </select>
-        </div>
-    );
-  }
-  
-  export function CountryAndCity({dataObjOfAllPages , updateDataObjOfAllPages}) {
-    const countries = require ('countries-cities').getCountries();
-    let cities = null;
-    dataObjOfAllPages.country && (cities = require ('countries-cities').getCities(dataObjOfAllPages.country));
-    cities && (cities = cities.sort());
 
-    return (
-      <form>
-        <h1>Country and City</h1>
-          <Countries countries={countries} dataObjOfAllPages ={dataObjOfAllPages} updateDataObjOfAllPages = {updateDataObjOfAllPages}/>
-          {cities &&
-          <Cities cities={cities} dataObjOfAllPages = {dataObjOfAllPages} updateDataObjOfAllPages = {updateDataObjOfAllPages}/>}
-      </form>
-    );
-  }
+  return (
+    <div className="form-outline mb-4">
+        <label className="form-label" htmlFor={name}>{name + ' '}: </label>
+        <select className="custom-select" id={name} value={selectedItem||'default'} onChange={(e)=>handlerInputChange(e)}>
+            <option disabled value = "default"> Please select a {name} </option>
+            {items.map(item => 
+              <option key={item} value={item}>{item}</option>)}
+        </select>
+      </div>
+  );
+}
+
+export function CountryAndCity({dataObjOfAllPages , updateDataObjOfAllPages}) {
+  const countries = require ('countries-cities').getCountries();
+  let cities = null;
+  dataObjOfAllPages.country && (cities = require ('countries-cities').getCities(dataObjOfAllPages.country));
+  cities && (cities = cities.sort());
+
+  return (
+    <form>
+      <h1>Country and City</h1>
+        <SelectedOptions name="country" items={countries} selectedItem={dataObjOfAllPages.country} updateDataObjOfAllPages={updateDataObjOfAllPages}/>
+        {cities &&
+        <SelectedOptions name="city" items={cities} selectedItem={dataObjOfAllPages.city} updateDataObjOfAllPages={updateDataObjOfAllPages}/>}
+    </form>
+  );
+}

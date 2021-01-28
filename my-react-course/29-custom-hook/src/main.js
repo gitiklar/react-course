@@ -1,21 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { useState, useEffect } from 'react';
-
-function useTimer(ms = 1000) {
-  const [tick , setTick] = useState(0);
-
-  function updateTick() {
-    setTick(v => v + 1);
-  }
-
-  useEffect(()=>{
-    const timerId = setInterval(updateTick , ms);
-    return ()=>clearInterval(timerId);
-  },[]);
-
-  return tick;
-}
+import { useState , useEffect } from 'react';
+import { useInterval , useTimer } from './useClock';
 
 function NewsTicker({items}) {
   const index = useTimer(2000);
@@ -31,6 +17,18 @@ function Clock() {
   );
 }
 
+function TestUseInterval() {
+  const [tick , setTick] = useState(1);
+  
+  useInterval(()=>{
+    setTick(tick * 2);
+  } , 1500);
+  
+  return (
+    <p>tick twice... {tick}</p>
+  );
+}
+
 const App = () => {
   const items = [
     "I lit up from Reno",
@@ -43,6 +41,7 @@ const App = () => {
     <div>
       <Clock />
       <NewsTicker items={items} />
+      <TestUseInterval/>
     </div>
   )
 };

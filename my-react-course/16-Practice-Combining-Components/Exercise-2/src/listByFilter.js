@@ -17,7 +17,7 @@ ListByFilter.defaultProps = {
 
     filterFn: (list , filter)=>{
         const regexp = (()=> {try {return new RegExp(filter);} catch {return false;}})();
-        filter && (list =list.filter(item => regexp ? regexp.test(item) : item.includes(filter)));
+        filter && (list =list.filter(item => regexp ? regexp.test(item) ? item: '' : item.includes(filter)));
         return list;
     },
 

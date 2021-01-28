@@ -57,6 +57,7 @@ FilteredList.defaultProps = {
   ),
 }
 
+
 const App = () => {
   const [items, setItems] = useState(['one', 'two', 'three', 'four', 'five']);
   const [colors, setColors] = useState(['blue', 'red', 'yellow', 'green', 'orange']);
@@ -73,15 +74,28 @@ const App = () => {
       </div>
       <CheckableList items={items} />
       <CheckableList items={colors} renderItem={(item)=><span style={{color:item}}>{item}</span>}/>
-      <FilteredList list={(_.shuffle(anArrayOfEnglishWords)).slice(0,100)} 
+
+      <h1> ---------------------------- FilteredList1 ---------------------------- </h1>
+
+      <FilteredList list={(_.shuffle(anArrayOfEnglishWords)).slice(0,10)} 
                     filterFn={(list , filter)=> list.filter(item=>item.toUpperCase().includes(filter.toUpperCase()))}
                     renderItem={(item)=><div style={{color:"white" , background:"black"}} key={item}>{item}</div>}
                     filterInput={(filter , setFilter)=>(<input style={{background:"black" , color:"white"}} type="text" value={filter} onChange={(e)=>setFilter(e.target.value)}/>)}/>
-      <FilteredList list={(_.shuffle(anArrayOfEnglishWords)).slice(0,100)} />
+      
+      <h1> ---------------------------- FilteredList2 ---------------------------- </h1>
+
+      <FilteredList list={(_.shuffle(anArrayOfEnglishWords)).slice(0,10)}/>
+
+      <h1> ---------------------------- FilteredList3 ---------------------------- </h1>
+      
+      <FilteredList list={(_.shuffle(anArrayOfEnglishWords)).slice(0,10)} 
+                    filterFn = {(list , filter)=>{
+                    const regexp = (()=> {try {return new RegExp(filter);} catch {return false;}})();
+                    filter && (list =list.filter(item => regexp ? regexp.test(item) ? item: '' : item.includes(filter)));
+                    return list;}}/>
     </div>
   )
 };
-
 
 // main.js
 const root = document.querySelector('main');

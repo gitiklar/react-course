@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export function MyFormsContainer(props) {
+export function FormsContainer(props) {
     const [dataObjOfAllPages , setDataObjOfAllPages] = useState({});
     const [currentIndex , setCurrentIndex] = useState(0);
     const countOfPages = React.Children.count(props.children);
@@ -8,12 +8,12 @@ export function MyFormsContainer(props) {
     function updateDataObjOfAllPages(dataObj) {
       setDataObjOfAllPages({...dataObjOfAllPages, ...dataObj});
     }
-  
+    
     function getCurrentPage() {
       const child = React.Children.toArray(props.children)[currentIndex];
       return React.cloneElement(child , { dataObjOfAllPages : {...child.props.dataObjOfAllPages , ...dataObjOfAllPages} , updateDataObjOfAllPages});
     }
-  
+   
     return (
       <>
         {getCurrentPage()}
