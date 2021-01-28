@@ -30,4 +30,3 @@ function ColorSelector(props) {
 }
 
 ReactDOM.render(<ColorSelector/>, document.querySelector('main'));
-

@@ -1,4 +1,4 @@
-
+/*
 import React from 'react';
 import { useState } from 'react';
 import tinycolor from 'tinycolor2';
@@ -51,8 +51,8 @@ export default React.memo(function ColorPalette(props) {
   }
   return colors;
 });
+*/
 
-/*
 import React, { useCallback, useRef } from 'react';
 import { useState } from 'react';
 import tinycolor from 'tinycolor2';
@@ -106,4 +106,3 @@ export default React.memo(function ColorPalette(props) {
   }
   return colors;
 });
-*/
