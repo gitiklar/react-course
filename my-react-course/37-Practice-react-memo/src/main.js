@@ -40,7 +40,7 @@ function Counter() {
   const deltaRef = useRef(1); const delta = deltaRef.current;
 
   const inc = useCallback(function inc() {
-    countRef.current += delta;
+    countRef.current += deltaRef.current;
     render();
   },[countRef]);
 
