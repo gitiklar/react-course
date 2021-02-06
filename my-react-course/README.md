@@ -49,7 +49,7 @@
 33/1            Carousel * 4 versions       Component - With react children
 33/2            useRemoteData * 2 versions  Component - With custom hook
 
----------------------------- Performance-in-the-React-application  -----------------------------
+---------------------------- Performance-in-the-React-application ------------------------------
 
 34              ColorSelector               Component - Render count
 35              ColorSelector,fiver         Component - With React.memo
