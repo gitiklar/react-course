@@ -1,4 +1,5 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import produce from 'immer';
 
 const initialState = {
@@ -12,4 +13,4 @@ const reducer = produce((state, action) => {
   }
 }, initialState);
 
-export default createStore(reducer);
+export default createStore(reducer, applyMiddleware(thunk));

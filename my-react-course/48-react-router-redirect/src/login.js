@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { setUsername } from './redux/actions';
+import { setUsername , saveUsername } from './redux/actions';
 
 function mapStateToProps(state) {
   return { username: state.username };
@@ -16,7 +16,7 @@ export default withRouter(connect(mapStateToProps)(function Login(props) {
 
   function onClickHandler() {
     if(username.startsWith('a')) {
-      history.push('/user');
+      dispatch(saveUsername(history));
     }
   }
 

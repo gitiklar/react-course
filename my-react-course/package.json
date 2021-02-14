@@ -40,6 +40,7 @@
     "node-sass": "^5.0.0",
     "react-colorful": "^4.4.4",
     "react-router-dom": "^5.2.0",
+    "redux-thunk": "^2.3.0",
     "tinycolor2": "^1.4.2"
   }
 }
