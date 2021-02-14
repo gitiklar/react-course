@@ -1,22 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { setUsername, saveUsername } from './redux/actions';
+import { setUsername } from './redux/actions';
 
 function mapStateToProps(state) {
   return { username: state.username };
 }
 
 export default withRouter(connect(mapStateToProps)(function Login(props) {
-  const { username, history } = props;
-  const { dispatch } = props;
+  const { username , dispatch , history} = props;
 
   function handleChange(e) {
     dispatch(setUsername(e.target.value));
   }
 
-  function saveAndNavigate() {
-    dispatch(saveUsername(history));
+  function onClickHandler() {
+    if(username.startsWith('a')) {
+      history.push('/user');
+    }
   }
 
   return (
@@ -24,7 +25,7 @@ export default withRouter(connect(mapStateToProps)(function Login(props) {
       <label>
         Please select a user name: 
         <input type="text" value={username} onChange={handleChange} />
-        <button onClick={saveAndNavigate}>Save</button>
+        <button type="button" onClick={onClickHandler}>Next</button>
       </label>
       <Link to="/user">Next</Link>
     </div>
