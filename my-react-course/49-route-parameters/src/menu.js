@@ -11,6 +11,8 @@ export default function Menu() {
         <li><Link to="/users/1">users/1</Link></li>
         <li><Link to="/users/2">users/2</Link></li>
         <li><Link to="/users/3">users/3</Link></li>
+        <li><Link to="/topics">Topics</Link></li>
+
       </ul>
       <h1>-----------------------------</h1>
     </nav>
