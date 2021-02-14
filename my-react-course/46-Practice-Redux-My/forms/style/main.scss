@@ -1,0 +1,58 @@
+body ,html {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+main {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+
+    .divContainerForm {
+        width: 50vw;
+        margin: auto;
+        padding-top: 2.5rem;
+        .undo:hover , .redo:hover {
+            background-color: rgb(119, 215, 228);
+            cursor: pointer;
+        }
+        form {
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            label , input {
+                font-size: 2.5rem;
+            }
+
+            .hobbies {
+                font-size: 1.5rem;
+                list-style: none;
+                height: 50vh;
+                overflow: auto;
+                input {
+                    transform: scale(1.5);
+                }
+            }
+            select ,option {
+                font-size: 1.5rem;
+                &.custom-select {
+                    height: 2.2em;
+                }
+            }
+        }
+
+        .btnsContainer {
+            display: flex;
+            justify-content:center;
+
+            button {
+                margin: 2px;
+                width: 150px;
+            }
+        }
+    }
+}
