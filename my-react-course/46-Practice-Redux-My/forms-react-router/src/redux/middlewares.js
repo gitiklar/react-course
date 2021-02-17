@@ -9,7 +9,9 @@ export const undoRedoMiddleware = ({dispatch , getState}) => next => action => {
             const historyData = getState().undoRedo.historyData;
             const undoOrRedoDataIndex = getState().undoRedo.currentIndexData + (action.type === 'UNDO'? -1 : 1);
             action.payload = historyData[undoOrRedoDataIndex] ? {...historyData[undoOrRedoDataIndex]} : false;
-            if(action.payload) return next(action); return;
+            if(!action.payload) return;
+            action.payload.router.currentFormName !== getState().router.currentFormName && action.history.push(`/forms/${action.payload.router.currentFormName}`);
+            return next(action);
         default:
             const nextAction = next(action);
             dispatch(saveStateToUndoRedo(getState()));

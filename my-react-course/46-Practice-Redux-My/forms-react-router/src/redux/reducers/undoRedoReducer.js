@@ -1,9 +1,9 @@
 import produce from 'immer';
 
-const initialState = {
+const undoRedo = {
     currentIndexData: 0,
     historyData: [  {  formsData: { username: '', password: '', country: '', city: '',  selectedHobbies: new Set(), } ,
-                        router: {currentFormIndex: 0} } ],
+                        router: { currentFormName: 'login' , currentIndexPage: 0} } ],
 };
 
 export default produce((state , action) => {
@@ -21,4 +21,4 @@ export default produce((state , action) => {
         case 'GET_STATE_FROM_LOCAL_STORAGE':
             return action.payload.undoRedo;
     }
-}, initialState);
+}, undoRedo);

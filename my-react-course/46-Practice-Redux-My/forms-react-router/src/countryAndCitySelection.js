@@ -24,7 +24,7 @@ const SelectedOptions = connect(mapStateToProps) (function SelectedOptions({name
   );
 });
 
-export default connect(mapStateToProps)(function CountryAndCitySelection({country , city}) {
+export default connect(mapStateToProps)(function Residence({country , city}) {
  const countries = (require ('countries-cities').getCountries()).sort();
  const cities = country && (require ('countries-cities').getCities(country)).sort();
 

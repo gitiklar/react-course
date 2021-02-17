@@ -10,8 +10,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(function LoginPage({username , password , dispatch}) {
-
+export default connect(mapStateToProps)(function Login({username , password , dispatch}) {
 
     return (
         <form autoComplete="off">

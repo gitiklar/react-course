@@ -12,7 +12,7 @@ function mapStateToProps(state , ownProps) {
     }
 }
 
-const SummaryPage = connect(mapStateToProps)(function SummaryPage({username , password , country , city , selectedHobbies}) {
+const Summary = connect(mapStateToProps)(function Summary({username , password , country , city , selectedHobbies}) {
 
     return (
       <form>
@@ -42,7 +42,7 @@ const SummaryPage = connect(mapStateToProps)(function SummaryPage({username , pa
 });
 
 
-SummaryPage.defaultProps = {
+Summary.defaultProps = {
     username:'guest',
     password:'123456',
     country:'no',
@@ -51,4 +51,4 @@ SummaryPage.defaultProps = {
 }
 
 
-export default SummaryPage;
+export default Summary;

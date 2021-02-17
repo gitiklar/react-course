@@ -4,7 +4,7 @@ import { Link, Route } from "react-router-dom";
 function Topic({ match }) {
     return <h3>Requested Param: {match.params.id}</h3>;
 }
-  
+
 export default function Topics({ match }) {
 
     return (

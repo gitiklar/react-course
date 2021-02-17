@@ -15,7 +15,7 @@ export default function App() {
         <Menu />
         <Route path="/" exact component={Home}/>
         <Route path="/about" component={About}/>
-        <Route path="/users/:id" component={Users}/>
+        <Route path="/users/:id/:text/:textid" component={Users}/>
         <Route path="/topics" component={Topics} />
     </Router>
   );

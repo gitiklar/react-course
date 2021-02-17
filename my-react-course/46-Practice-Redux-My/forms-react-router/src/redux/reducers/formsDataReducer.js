@@ -1,7 +1,7 @@
 import produce, { enableMapSet } from 'immer';
 enableMapSet();
 
-const initialState = {
+const formsData = {
     username: '',
     password: '',
     country: '',
@@ -24,4 +24,4 @@ export default produce((state , action)=>{
         case 'UNDO': case 'REDO': case 'GET_STATE_FROM_LOCAL_STORAGE':
             return action.payload.formsData;
     }
-},initialState);
+},formsData);

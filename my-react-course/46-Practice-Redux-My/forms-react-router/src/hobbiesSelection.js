@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(function HobbiesSelection({selectedHobbies , dispatch}) {      
+export default connect(mapStateToProps)(function Hobbies({selectedHobbies , dispatch}) {      
     return (
       <form>
         <h1>Hobbies selection</h1>
