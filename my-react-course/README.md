@@ -58,5 +58,11 @@
 
 ----------------------------------------- React-Redux -------------------------------------------
 
+45              Firebase-chat               Component - With firebase
+46              Forms                       Component - With React/Redux
+
 ----------------------------------------- React-Router ------------------------------------------
+
+46              Forms                       Component - With React/Redux && React-Router
+
 ```
