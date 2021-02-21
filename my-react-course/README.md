@@ -55,4 +55,8 @@
 35              ColorSelector,fiver         Component - With React.memo
 36              ColorSelector,fiver         Component - With React.memo && useCallBack
 37              Counter                     Component - With React.memo && useCallBack
+
+----------------------------------------- React-Redux -------------------------------------------
+
+----------------------------------------- React-Router ------------------------------------------
 ```

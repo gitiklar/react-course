@@ -3,24 +3,19 @@ import { connect } from 'react-redux';
 
 import UndoRedo from './undoRedo';
 import { goToCurrentFormUrl , getPagesNamesObjFromProps , getKeyByValue} from './redux/actions';
-import { Redirect, useParams, withRouter } from 'react-router-dom';
+import { useParams, withRouter } from 'react-router-dom';
 
 function mapStateToProps(state) {
     return {
-        currentFormName: state.router.currentFormName,
         currentIndexPage: state.router.currentIndexPage,
     };
 }
 
 export default withRouter(connect(mapStateToProps)(function FormsContainer(props) {
-    const { currentFormName , currentIndexPage , history , dispatch , match} = props;
+    const { currentIndexPage , history , dispatch } = props;
     const countOfPages = React.Children.count(props.children);
     const pages = getPagesNamesObjFromProps(props);
 
-    if(useParams().id !== currentFormName) {
-       // dispatch(goToCurrentFormUrl(history , useParams().id , getKeyByValue(pages , useParams().id)));
-    }
-const {id} = useParams()
     return (
         <div className="divContainerForm">
             <UndoRedo/>

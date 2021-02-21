@@ -35,7 +35,7 @@ export default class Demo4 extends React.Component {
       this.player = new Player(this.el, {
           height: '390',
           width: '640',
-          videoId: 'M7lc1UVf-VE',        
+          videoId: 'etBJl2vfhb4',        
       });
     });
   }
