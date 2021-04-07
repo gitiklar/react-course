@@ -6,7 +6,7 @@ function Topic({ match }) {
 }
 
 export default function Topics({ match }) {
-
+debugger
     return (
       <div>
         <h2>Topics</h2>
